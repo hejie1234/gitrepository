@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <description>dubbo中服务提供者的配置</description>
+
+    <!--配置dubbo注册到注册中心的服务名称 通常情况下我们用工程名称-->
+    <dubbo:application name="export_cargo_service">
+        <!--配置参数：是否开启质量监控-->
+        <dubbo:parameter key="qos.enable" value="false"></dubbo:parameter>
+    </dubbo:application>
+
+    <!--配置注册中心的地址-->
+    <dubbo:registry address="zookeeper://localhost" port="2181"></dubbo:registry>
+
+    <!--配置dubbo提供者使用的协议和访问的端口-->
+    <dubbo:protocol name="dubbo" port="20882"></dubbo:protocol>
+
+    <!--配置dubbo扫描注解所在的包-->
+    <dubbo:annotation package="com.itheima.service"></dubbo:annotation>
+</beans>
